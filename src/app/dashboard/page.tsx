@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 
 export default function Dashboard() {
@@ -12,7 +12,7 @@ export default function Dashboard() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
-        router.push("/login");
+        router.push("/login"); // redirect if not logged in
       } else {
         setUser(currentUser);
       }
